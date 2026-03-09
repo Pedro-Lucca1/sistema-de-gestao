@@ -1,0 +1,53 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="d-flex">
+    <h2 style="color: var(--primary);">Clientes Registrados</h2>
+
+    <a href="{% url 'criar-clientes' %}" class="btn btn-success">
+        Adicionar Cliente
+    </a>
+</div>
+
+<table>
+    <thead>
+        <tr>
+            <th>Cliente</th>
+            <th>Contato (Email)</th>
+            <th>Data de Cadastro</th>
+            <th>Telefone</th>
+            <th class="text-center">Opções</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        {% for c in clientes %}
+        <tr>
+            <td>{{ c.nome }}</td>
+            <td>{{ c.email }}</td>
+            <td>{{ c.data }}</td>
+            <td>{{ c.telefone }}</td>
+
+            <td class="text-center">
+                <a href="{% url 'editar-clientes' c.pk %}" class="btn">
+                    Alterar
+                </a>
+
+                <a href="{% url 'excluir-clientes' c.pk %}" class="btn btn-danger">
+                    Remover
+                </a>
+            </td>
+        </tr>
+
+        {% empty %}
+        <tr>
+            <td colspan="5" class="text-center">
+                Ainda não há clientes cadastrados.
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+{% endblock %}

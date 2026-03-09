@@ -1,0 +1,51 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="d-flex">
+    <h2 style="color: var(--primary);">Fornecedores Registrados</h2>
+    
+    <a href="{% url 'criar-fornecedores' %}" class="btn btn-success">
+        Adicionar Fornecedor
+    </a>
+</div>
+
+<table>
+    <thead>
+        <tr>
+            <th>Fornecedor</th>
+            <th>Contato (Email)</th>
+            <th>Telefone</th>
+            <th class="text-center">Opções</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        {% for f in fornecedores %}
+        <tr>
+            <td>{{ f.nome }}</td>
+            <td>{{ f.email }}</td>
+            <td>{{ f.telefone }}</td>
+
+            <td class="text-center">
+                <a href="{% url 'editar-fornecedores' f.pk %}" class="btn">
+                    Alterar
+                </a>
+
+                <a href="{% url 'excluir-fornecedores' f.pk %}" class="btn btn-danger">
+                    Remover
+                </a>
+            </td>
+        </tr>
+
+        {% empty %}
+        <tr>
+            <td colspan="4" class="text-center">
+                Não há fornecedores cadastrados no momento.
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+{% endblock %}

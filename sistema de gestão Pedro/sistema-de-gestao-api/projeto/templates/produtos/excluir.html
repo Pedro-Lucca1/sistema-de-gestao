@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="text-center">
+
+    <h2 style="color: var(--primary); margin-bottom:10px;">
+        Confirmação de Exclusão
+    </h2>
+
+    <p>Tem certeza que deseja remover o seguinte registro?</p>
+
+    <div style="
+        background:#f2f2f2;
+        padding:20px;
+        margin:20px auto;
+        border-radius:6px;
+        max-width:400px;
+        border:1px solid var(--border);
+    ">
+        <h3>{{ object.nome }}</h3>
+    </div>
+
+    <p style="margin-bottom:20px; color:#7a7a7a;">
+        Esta ação não poderá ser desfeita.
+    </p>
+
+    <form method="post">
+        {% csrf_token %}
+        <button type="submit" class="btn btn-danger w-100">
+            Excluir Registro
+        </button>
+    </form>
+
+    <div class="mt-3">
+        <button 
+            type="button" 
+            class="btn w-100"
+            style="background:#af7ac5;"
+            onclick="history.back()">
+            Cancelar
+        </button>
+    </div>
+
+</div>
+{% endblock %}

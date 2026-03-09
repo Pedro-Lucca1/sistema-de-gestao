@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="text-center">
+
+    <h2 style="color: var(--primary);">Confirmação de Exclusão</h2>
+
+    <p>Deseja realmente remover o seguinte item do sistema?</p>
+
+    <div style="
+        background:#f4f4f4;
+        padding:20px;
+        margin:20px auto;
+        border-radius:6px;
+        max-width:420px;
+        border:1px solid var(--border);
+    ">
+        <h3>{{ object.nome }}</h3>
+    </div>
+
+    <p style="margin-bottom:20px; color:#6e6e6e;">
+        Após confirmar, os dados serão excluídos permanentemente.
+    </p>
+
+    <form method="post">
+        {% csrf_token %}
+        <button type="submit" class="btn btn-danger w-100">
+            Confirmar Exclusão
+        </button>
+    </form>
+
+    <div class="mt-3">
+        <button 
+            type="button"
+            class="btn w-100"
+            style="background: var(--accent);"
+            onclick="history.back()">
+
+            Voltar
+        </button>
+    </div>
+
+</div>
+
+{% endblock %}
